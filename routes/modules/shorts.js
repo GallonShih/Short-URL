@@ -6,7 +6,7 @@ const generateShortPath = require('../../generate_short_path')
 router.post('/', (req, res) => {
     const { url_original } = req.body
     const shortPath = generateShortPath()
-    const url_short = `${req.headers.origin}/${shortPath}`
+    const url_short = `${req.headers.origin}/shorts/links/${shortPath}`
     const short = new Short({
         url_original: url_original,
         url_short: url_short
@@ -20,6 +20,13 @@ router.get('/result/:url_id', (req, res) => {
     return Short.findById(url_id)
         .lean()
         .then( (short) =>  res.render('result', { short }))
+        .catch(error => console.log(error))
+})
+router.get('/links/:path', (req, res) => {
+    const url_short = `http://${req.headers.host}${req.baseUrl}${req.path}`
+    Short.findOne({ url_short: url_short })
+        .lean()
+        .then( (short) => res.redirect(short.url_original))
         .catch(error => console.log(error))
 })
 
