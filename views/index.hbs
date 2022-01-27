@@ -1,6 +1,30 @@
-<form action="/shorts", method="POST">
+<form id="urlForm" action="/shorts", method="POST">
     <div class="form-group">
         <input type="url" class="form-control" id="url_original" name="url_original" required>
     </div>
     <button type="submit" class="btn btn-primary mt-3">Shorten</button>
+    <script type="text/javascript">
+        const urlForm = document.querySelector("#urlForm")
+        const inputURL = document.querySelector("#url_original")
+        console.log(urlForm)
+        urlForm.addEventListener('submit', (event) => {
+            event.preventDefault()
+            console.log(inputURL.value)
+            $.ajax({
+                url: inputURL.value,
+                type: "Get",
+                cache: false,
+                dataType: "jsonp", //跨域采用jsonp方式
+                processData: false,
+                complete: function(res) {
+                    if (res.status === 200) {
+                        console.log('finallly.... so tired...')
+                        $("#urlForm").submit()
+                    } else {
+                        alert('The URL is invalid')
+                    }
+                }
+            })
+        })
+    </script>
 </form>
