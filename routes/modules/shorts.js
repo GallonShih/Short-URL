@@ -30,10 +30,11 @@ router.get('/result/:url_id', (req, res) => {
 router.get('/links/:path', (req, res) => {
     const url_short = `${req.protocol}://${req.headers.host}${req.baseUrl}${req.path}`
     console.log(url_short)
-    return Short.findOne({ url_short: 'https://limitless-beyond-12204.herokuapp.com/shorts/links/FIWow'})
-        .lean()
-        .then( (short) => res.redirect(short.url_original))
-        .catch(error => console.log(error))
+    res.send(url_short)
+    // return Short.findOne({ url_short: 'https://limitless-beyond-12204.herokuapp.com/shorts/links/FIWow'})
+    //     .lean()
+    //     .then( (short) => res.redirect(short.url_original))
+    //     .catch(error => console.log(error))
 })
 
 module.exports = router
