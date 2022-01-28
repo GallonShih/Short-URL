@@ -28,8 +28,8 @@ router.get('/result/:url_id', (req, res) => {
         .catch(error => console.log(error))
 })
 router.get('/links/:path', (req, res) => {
-    const url_short = `http://${req.headers.host}${req.baseUrl}${req.path}`
-    Short.findOne({ url_short: url_short })
+    const url_short = `${req.protocol}://${req.headers.host}${req.baseUrl}${req.path}`
+    Short.findOne({ url_short: url_short})
         .lean()
         .then( (short) => res.redirect(short.url_original))
         .catch(error => console.log(error))
