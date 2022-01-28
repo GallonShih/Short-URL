@@ -1,3 +1,13 @@
 <h1>Success</h1>
-<p>{{ short.url_short }}</p>
-<a class="btn btn-success" href="/">Retry</a>
+<p id="url-short">{{ short.url_short }}</p>
+<button class="btn btn-success" onclick="copyText()">Copy</button>
+<a class="btn btn-info" href="/">Retry</a>
+<script type="text/javascript">
+    function copyText() {
+        const urlShort = document.querySelector("#url-short")
+        /* Copy the text inside the text field */
+        navigator.clipboard.writeText(urlShort.innerHTML)
+        /* Alert the copied text */
+        alert(`Copied the short url: ${urlShort.innerHTML}`)
+    }
+</script>
