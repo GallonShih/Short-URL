@@ -10,7 +10,7 @@ router.post('/', (req, res) => {
         .then( (short) => res.redirect(`/shorts/result/${short._id}`))
         .catch( () => {
             const shortPath = generateShortPath()
-            const url_short = `${req.headers.origin}/shorts/links/${shortPath}`
+            const url_short = `${req.protocol}://${req.headers.host}${req.baseUrl}${shortPath}`
             const short = new Short({
                 url_original: url_original,
                 url_short: url_short
@@ -29,12 +29,10 @@ router.get('/result/:url_id', (req, res) => {
 })
 router.get('/links/:path', (req, res) => {
     const url_short = `${req.protocol}://${req.headers.host}${req.baseUrl}${req.path}`
-    console.log(url_short)
-    res.send(url_short)
-    // return Short.findOne({ url_short: 'https://limitless-beyond-12204.herokuapp.com/shorts/links/FIWow'})
-    //     .lean()
-    //     .then( (short) => res.redirect(short.url_original))
-    //     .catch(error => console.log(error))
+    return Short.findOne({ url_short: url_short})
+        .lean()
+        .then( (short) => res.redirect(short.url_original))
+        .catch(error => console.log(error))
 })
 
 module.exports = router
