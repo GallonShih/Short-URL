@@ -1,7 +1,11 @@
-<h1>Success</h1>
-<p id="url-short">{{ short.url_short }}</p>
-<button class="btn btn-success" onclick="copyText()">Copy</button>
-<a class="btn btn-info" href="/">Retry</a>
+<h1>Success! Please use this link: </h1>
+<div>
+    <a id="url-short" href="{{ short.url_short }}">
+        <h2>{{ short.url_short }}</h2>
+    </a>
+</div>
+<button class="btn btn-success mt-4" onclick="copyText()">Copy</button>
+<a class="btn btn-info mt-4" href="/">Retry</a>
 <script type="text/javascript">
     function copyText() {
         const urlShort = document.querySelector("#url-short")

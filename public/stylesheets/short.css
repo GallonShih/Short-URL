@@ -1,0 +1,28 @@
+header {
+    overflow: hidden;
+}
+
+/* .banner {
+    position: relative;
+    height: 360px;
+    background: #dddddd center center url('https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png');
+    background-size: cover;
+    filter: blur(3px);
+} */
+.banner {
+    height: 200px; /*can be anything*/
+    width: 200px; /*can be anything*/
+    position: relative;
+}
+img {
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
